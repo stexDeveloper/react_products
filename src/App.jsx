@@ -1,53 +1,26 @@
-// import { useEffect, useState } from "react";
-import HamburgerMenuComponent from "./components/HamburgerMenuComponent";
-import ListProductsComponent from "./components/ListProductsComponent";
-import SingleProductComponent from "./components/SingleProductComponent";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import TodoInputComponent from "./components/TodoInputComponent";
+import TodoListComponent from "./components/TodoListComponent";
+import { useEffect, useState } from "react";
 
 function App() {
-  //state da smestimo podatke
-  // const [isActive, setIsActive] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [allProducts, setAllProducts] = useState([]);
-  //podatke zelimo kad se ucita nasa komponenta
+  //smesti sve todoove
+  const [todoItems, setTodoItems] = useState([]);
 
-  //ovaj hook ili funkcija ce se pokrenuti kad se ucita nasa komponenta
-  //u tom trenutku kad se pokrene ja zelim podatke
   // useEffect(() => {
-  //   fetch("https://dummyjson.com/products")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setAllProducts(data.products);
-  //       setIsLoading(true);
-  //     });
-  //   // console.log("RADII");
-  // }, []);
-
-  // function handleActive() {
-  //   setIsActive(true);
-  // }
+  //   console.log(todoItems);
+  // }),
+  //   [todoItems];
 
   return (
-    <div>
-      {/* <div className="flex flex-wrap gap-[40px] items-center justify-center">
-        {isLoading ? (
-          allProducts.map((product, index) => {
-            return <ListProductsComponent key={product.id} product={product} />;
-          })
-        ) : (
-          <h2>Loading...</h2>
-        )}
-      </div> */}
+    <div className="container mx-auto flex flex-col items-center justify-center">
+      <h1 className="text-[60px] text-green-600 font-extrabold my-[30px]">
+        LODO App
+      </h1>
 
-      <HamburgerMenuComponent />
-
-      <ListProductsComponent />
-
-      <SingleProductComponent />
-
-      {/* <button onClick={handleActive}>Click Me</button> */}
+      <TodoInputComponent todoItems={todoItems} setTodoItems={setTodoItems} />
+      <TodoListComponent todoItems={todoItems} setTodoItems={setTodoItems} />
 
       <ToastContainer />
     </div>
