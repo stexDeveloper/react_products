@@ -3,10 +3,26 @@ import "react-toastify/dist/ReactToastify.css";
 import TodoInputComponent from "./components/TodoInputComponent";
 import TodoListComponent from "./components/TodoListComponent";
 import { useEffect, useState } from "react";
+import ProductService from "./services/productService";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://dummyjson.com";
 
 function App() {
   //smesti sve todoove
-  const [todoItems, setTodoItems] = useState([]);
+  // const [todoItems, setTodoItems] = useState([]);
+
+  useEffect(() => {
+    ProductService.getAllProducts()
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    ProductService.getSingleProduct()
+      .then((res) => console.log(res.data.products))
+      .catch((err) => console.log(err));
+  }, []);
 
   // useEffect(() => {
   //   console.log(todoItems);
@@ -19,10 +35,10 @@ function App() {
         LODO App
       </h1>
 
-      <TodoInputComponent todoItems={todoItems} setTodoItems={setTodoItems} />
+      {/* <TodoInputComponent todoItems={todoItems} setTodoItems={setTodoItems} />
       <TodoListComponent todoItems={todoItems} setTodoItems={setTodoItems} />
 
-      <ToastContainer />
+      <ToastContainer /> */}
     </div>
   );
 }
